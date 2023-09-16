@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <!-- Required meta tags -->
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></link>
+
+        <title>AppWeb CRUD</title>
+        
+        <script>
+            function cargar(id, nom, ape, dir) {
+                document.getElementById("formulario:idCliente").value = id;
+                document.getElementById("formulario:nombreCliente").value = nom;
+                document.getElementById("formulario:apellidoCliente").value = ape;
+                document.getElementById("formulario:direccionCliente").value = dir;
+            }
+        </script>
+        
+        
+    </h:head>
+    <h:body>
+        <center>
+            <h1>Matenimiento de datos</h1>
+        </center>
+
+        <br/>
+        
+        
+        <center class="container" style="max-width: 400px;">
+            <h:form id="formulario">
+                <div class="row mb-3">
+                    <div class="col">
+                        <h:outputLabel>Nombre</h:outputLabel>
+                    </div>
+                    <div class="col">
+                        <!-- comment 
+                        <input class="form-control form-control-sm" type="text" placeholder="nombre" ></input>
+                        -->
+                        <h:inputText value="#{clienteBean.nombrecliente}" class="form-control form-control-sm" id="nombreCliente" ></h:inputText>
+                        
+                    </div>
+                </div>
+
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <h:outputLabel>Apellido</h:outputLabel>
+                    </div>
+                    <div class="col">
+                        <h:inputText value="#{clienteBean.apellidocliente}" id="apellidoCliente" class="form-control form-control-sm"></h:inputText>
+                    </div>
+                </div>
+
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <h:outputLabel>Direccion</h:outputLabel>
+                    </div>
+                    <div class="col" >
+                        <h:inputText value="#{clienteBean.direccioncliente}" id="direccionCliente" class="form-control form-control-sm"></h:inputText>
+                    </div>
+                </div>
+
+
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <h:outputLabel>Modificar / Eliminar por ID</h:outputLabel>
+                    </div>
+                    <div class="col">
+                        <h:inputText value="#{clienteBean.idcliente}" id="idCliente" class="form-control form-control-sm"></h:inputText>
+                    </div>
+                </div>
+
+                <!-- Agrego los botones -->
+                <div class="row mb-3">
+                    <div class="col">
+                        <h:commandButton class="btn btn-outline-primary" value="Agregar" action="#{clienteBean.agregarCliente()}" ></h:commandButton>
+                    </div>
+                    
+                    <div class="col">
+                        <h:commandButton class="btn btn-outline-primary" value="Modificar" action="#{clienteBean.modificarCliente()}"></h:commandButton>
+                    </div>
+                    
+                    <div class="col">
+                        <h:commandButton class="btn btn-outline-primary" value="Eliminar" action="#{clienteBean.eliminarCliente()}"></h:commandButton>
+                    </div>
+                    
+                    
+                </div>
+
+            </h:form>
+        </center>
+        
+        <center>
+                <h:form class="container">
+                    <h:dataTable value="#{clienteBean.tablaClientes}" var="cliente" class="table table-bordered table-striped" >
+                        <h:column>
+                            <f:facet name="header">ID Cliente</f:facet>
+                            <h:outputText value="#{cliente.idcliente}" class="form-control"></h:outputText>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header">Nombre</f:facet>
+                            <h:outputText value="#{cliente.nombrecliente}" class="form-control"></h:outputText>
+                        </h:column>
+                        
+                        
+                        <h:column>
+                            <f:facet name="header">Apellido</f:facet>
+                            <h:outputText value="#{cliente.apellidocliente}" class="form-control"></h:outputText>
+                        </h:column>
+                        
+                        
+                        <h:column>
+                            <f:facet name="header">Direccion</f:facet>
+                            <h:outputText value="#{cliente.direccioncliente}" class="form-control"></h:outputText>
+                        </h:column>
+                        
+                    <h:column>
+                        <f:facet name="header"> Aciones</f:facet>   
+                        <a href="javascript:cargar('#{cliente.idcliente}','#{cliente.nombrecliente}','#{cliente.apellidocliente}','#{cliente.direccioncliente}')">Seleccionar</a>
+                    </h:column>
+                        
+                    </h:dataTable>
+                </h:form>
+            </center>
+        
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    </h:body>
+</html>
